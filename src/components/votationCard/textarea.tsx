@@ -1,4 +1,4 @@
-import { RefObject, forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect } from "react";
 
 type TextAreaProps = {
    value: string;
@@ -6,12 +6,13 @@ type TextAreaProps = {
    className?: string;
    getState: any;
    onBlur?: () => void;
+   readOnly: boolean;
 };
 
 // Forwarding the ref to the underlying textarea element
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
    (props, ref: any) => {
-      const { value, setValue, className, getState, onBlur } = props;
+      const { value, className, getState, readOnly, setValue, onBlur } = props;
 
       useEffect(() => {
          if (ref.current && value === "") {
@@ -44,7 +45,10 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       return (
          <textarea
             ref={ref}
-            className={`${className} input focus:outline-none p-2 rounded-lg hover:bg-gray-50 border border-white focus:bg-gray-50 focus:border-gray-300 scrollbar-hide resize-none overflow-hidden `}
+            className={`${className} input focus:outline-none p-2 border border-transparent ${
+               !readOnly &&
+               "rounded-lg hover:bg-gray-50 border border-white focus:bg-gray-50 focus:border-gray-300"
+            } scrollbar-hide resize-none overflow-hidden `}
             rows={1}
             aria-label="textarea"
             placeholder="Write your text here"
@@ -52,6 +56,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onBlur={handleOnBlur}
             onClick={handleClick}
             value={value}
+            readOnly={readOnly}
          ></textarea>
       );
    }

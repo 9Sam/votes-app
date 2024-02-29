@@ -15,14 +15,16 @@ import {
    AiOutlineDislike,
    AiOutlineLike,
 } from "react-icons/ai";
-import { VotationCardI } from "../app/interfaces/votes.interface";
+import { VotationCardI } from "../../app/interfaces/votes.interface";
 import { IoAddOutline } from "react-icons/io5";
 import TextArea from "./textarea";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { UserI } from "../../app/interfaces/user.interface";
 
 type VotationCardProps = {
    className?: string;
    votationCard: VotationCardI;
+   user?: UserI;
 };
 
 type VoteStatusT = {
@@ -33,11 +35,13 @@ type VoteStatusT = {
 export default function VotationCard({
    className,
    votationCard,
+   user,
 }: VotationCardProps) {
-   const { title, description, votes, creationDate } = votationCard;
+   const { title, description, userId, votes, creationDate } = votationCard;
 
    const titleRef = useRef<HTMLTextAreaElement>(null);
    const descriptionRef = useRef<HTMLTextAreaElement>(null);
+
    const [textTitle, setTextTitle] = useState<string>(title || "");
    const [textDescription, setTextDescription] = useState<string>(
       description || ""
@@ -45,6 +49,11 @@ export default function VotationCard({
    const [isDescriptionActive, setIsDescriptionActive] = useState<boolean>(
       description.length > 0
    );
+   const [isEditable, setIsEditable] = useState<boolean>(user?.id === userId);
+
+   useEffect(() => {
+      if (user?.id === userId) setIsEditable(true);
+   }, []);
 
    const handleTitleChange = (newText: string) => {
       setTextTitle(newText);
@@ -76,7 +85,7 @@ export default function VotationCard({
       isActive: false,
    });
 
-   const toggleVote = (vote: { value: number; isActive: boolean }) => {
+   const toggleVote = (vote: VoteStatusT) => {
       return {
          value: vote.isActive ? vote.value - 1 : vote.value + 1,
          isActive: !vote.isActive,
@@ -102,11 +111,14 @@ export default function VotationCard({
 
    return (
       <Card className={`${className} w-full`} shadow="sm">
-         <CardHeader className="icons flex gap-2 justify-end">
-            <AiFillLock className="icon-style text-gray-500" />
-            <Button variant="light" color="danger" size="sm">
-               <AiFillDelete className="icon-style" />
-            </Button>
+         <CardHeader className="icons flex gap-2 justify-end h-14">
+            {isEditable ? (
+               <Button variant="light" color="danger" size="sm">
+                  <AiFillDelete className="icon-style" />
+               </Button>
+            ) : (
+               <AiFillLock className="icon-style text-gray-500" />
+            )}
          </CardHeader>
          <CardBody>
             <TextArea
@@ -115,6 +127,7 @@ export default function VotationCard({
                value={textTitle || ""}
                setValue={setTextTitle}
                getState={handleTitleChange}
+               readOnly={!isEditable}
             ></TextArea>
             {isDescriptionActive ? (
                <TextArea
@@ -124,8 +137,9 @@ export default function VotationCard({
                   setValue={setTextDescription}
                   getState={handleDescriptionChange}
                   onBlur={handleTextAreaBlur}
+                  readOnly={!isEditable}
                ></TextArea>
-            ) : (
+            ) : isEditable ? (
                <Button
                   className="w-40 mt-2 "
                   variant="bordered"
@@ -136,7 +150,7 @@ export default function VotationCard({
                      <IoAddOutline className="w-5 h-5 " /> Add Description
                   </div>
                </Button>
-            )}
+            ) : null}
          </CardBody>
          <CardFooter>
             <div className="flex justify-between gap-2">

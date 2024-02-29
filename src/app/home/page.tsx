@@ -1,7 +1,5 @@
 "use client";
 
-import NavbarCustom from "../../components/navbarCustom";
-import NoteCardList from "../../components/votationCardList";
 import VotationPools from "../../components/votationPools";
 
 export default function Home() {

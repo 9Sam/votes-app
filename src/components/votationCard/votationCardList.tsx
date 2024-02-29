@@ -1,18 +1,21 @@
 "use client";
 
-import { Button, Card } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import {
    VotationCardI,
    VotationPoolI,
-} from "../app/interfaces/votes.interface";
+} from "../../app/interfaces/votes.interface";
 import VotationCard from "./votationCard";
 import { IoAddOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 type Props = {
    votationPool: VotationPoolI;
 };
 
 export default function VotationCardList({ votationPool }: Props) {
+   const user = useSelector((state: any) => state.user);
+
    return (
       <>
          <div className="w-full">
@@ -27,6 +30,7 @@ export default function VotationCardList({ votationPool }: Props) {
                         key={votationCard.id}
                         className="w-full"
                         votationCard={votationCard}
+                        user={user}
                      />
                   ))}
                <Button

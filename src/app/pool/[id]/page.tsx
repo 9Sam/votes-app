@@ -1,7 +1,7 @@
 "use client";
 
 import { useSelector } from "react-redux";
-import VotationCardList from "../../../components/votationCardList";
+import VotationCardList from "../../../components/votationCard/votationCardList";
 import { VotationCardI } from "../../interfaces/votes.interface";
 
 export default function Home({ params }: { params: { id: string } }) {
