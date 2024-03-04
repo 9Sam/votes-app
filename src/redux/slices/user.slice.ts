@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserI } from "../../app/interfaces/user.interface";
+import { UserI } from "../../interfaces/user.interface";
 
 const initialState: UserI = {
    id: "3140b311-fb75-45e7-ac07-a463b18a8381",

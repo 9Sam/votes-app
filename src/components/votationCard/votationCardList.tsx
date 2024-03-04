@@ -1,10 +1,7 @@
 "use client";
 
 import { Button } from "@nextui-org/react";
-import {
-   VotationCardI,
-   VotationPoolI,
-} from "../../app/interfaces/votes.interface";
+import { VotationCardI, VotationPoolI } from "../../interfaces/votes.interface";
 import VotationCard from "./votationCard";
 import { IoAddOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";

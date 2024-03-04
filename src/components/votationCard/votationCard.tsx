@@ -15,11 +15,11 @@ import {
    AiOutlineDislike,
    AiOutlineLike,
 } from "react-icons/ai";
-import { VotationCardI } from "../../app/interfaces/votes.interface";
+import { VotationCardI } from "../../interfaces/votes.interface";
 import { IoAddOutline } from "react-icons/io5";
 import TextArea from "./textarea";
 import { useEffect, useRef, useState } from "react";
-import { UserI } from "../../app/interfaces/user.interface";
+import { UserI } from "../../interfaces/user.interface";
 
 type VotationCardProps = {
    className?: string;

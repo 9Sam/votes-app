@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { VotationPoolI } from "../../app/interfaces/votes.interface";
+import { VotationPoolI } from "../../interfaces/votes.interface";
 
 const initialState: VotationPoolI[] = [
    {

@@ -2,7 +2,8 @@
 
 import { useSelector } from "react-redux";
 import VotationCardList from "../../../components/votationCard/votationCardList";
-import { VotationCardI } from "../../interfaces/votes.interface";
+import { VotationCardI } from "../../../interfaces/votes.interface";
+import { useEffect } from "react";
 
 export default function Home({ params }: { params: { id: string } }) {
    const votationPools = useSelector((state: any) => state.votationPool);
