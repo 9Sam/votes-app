@@ -1,7 +1,8 @@
 import { Document, Model } from "mongoose";
-import { IUser } from "./user.interface";
+import { UserI } from "./user.interface";
 
-export interface IVotesCard {
+export interface VotesCardI {
+   _id?: any;
    title?: string;
    description: string;
    likes: string[];
@@ -11,25 +12,26 @@ export interface IVotesCard {
    createdAt: Date;
 }
 
-export interface IVotesPool {
+export interface VotesPoolI {
+   _id?: any;
    title: string;
    description: string;
-   userId: IUser;
-   cards: IVotesCard[];
+   userId: UserI;
+   cards: VotesCardI[];
    guests: string[];
    status: string;
    createdBy: string;
    createdAt: Date;
 }
 
-export interface IVotesCardDocument extends IVotesCard, Document {}
+export interface VotesCardDocumentI extends VotesCardI, Document {}
 
-export interface IVotesPoolDocument extends IVotesPool, Document {}
+export interface VotesPoolDocumentI extends VotesPoolI, Document {}
 
-export interface IVotesCardModel extends Model<IVotesCardDocument> {
-   buildVotesCard(args: IVotesCard): IVotesCardDocument;
+export interface VotesCardModelI extends Model<VotesCardDocumentI> {
+   buildVotesCard(args: VotesCardI): VotesCardDocumentI;
 }
 
-export interface IVotesPoolModel extends Model<IVotesPoolDocument> {
-   buildVotesPool(args: IVotesPool): IVotesPoolDocument;
+export interface VotesPoolModelI extends Model<VotesPoolDocumentI> {
+   buildVotesPool(args: VotesPoolI): VotesPoolDocumentI;
 }

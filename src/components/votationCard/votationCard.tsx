@@ -15,7 +15,7 @@ import {
    AiOutlineDislike,
    AiOutlineLike,
 } from "react-icons/ai";
-import { VotationCardI } from "../../interfaces/votes.interface";
+import { VotesCardI } from "../../interfaces/votes.interface";
 import { IoAddOutline } from "react-icons/io5";
 import TextArea from "./textarea";
 import { useEffect, useRef, useState } from "react";
@@ -23,7 +23,7 @@ import { UserI } from "../../interfaces/user.interface";
 
 type VotationCardProps = {
    className?: string;
-   votationCard: VotationCardI;
+   votationCard: VotesCardI;
    user?: UserI;
 };
 
@@ -37,7 +37,14 @@ export default function VotationCard({
    votationCard,
    user,
 }: VotationCardProps) {
-   const { title, description, userId, votes, creationDate } = votationCard;
+   const {
+      title,
+      description,
+      createdBy,
+      likes,
+      dislikes,
+      createdAt,
+   } = votationCard;
 
    const titleRef = useRef<HTMLTextAreaElement>(null);
    const descriptionRef = useRef<HTMLTextAreaElement>(null);
@@ -49,10 +56,12 @@ export default function VotationCard({
    const [isDescriptionActive, setIsDescriptionActive] = useState<boolean>(
       description.length > 0
    );
-   const [isEditable, setIsEditable] = useState<boolean>(user?.id === userId);
+   const [isEditable, setIsEditable] = useState<boolean>(
+      user?._id === createdBy
+   );
 
    useEffect(() => {
-      if (user?.id === userId) setIsEditable(true);
+      if (user?._id === createdBy) setIsEditable(true);
    }, []);
 
    const handleTitleChange = (newText: string) => {

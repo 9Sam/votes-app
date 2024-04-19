@@ -1,13 +1,13 @@
 "use client";
 
 import { Button } from "@nextui-org/react";
-import { VotationCardI, VotationPoolI } from "../../interfaces/votes.interface";
+import { VotesCardI, VotesPoolI } from "../../interfaces/votes.interface";
 import VotationCard from "./votationCard";
 import { IoAddOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
 type Props = {
-   votationPool: VotationPoolI;
+   votationPool: VotesPoolI;
 };
 
 export default function VotationCardList({ votationPool }: Props) {
@@ -22,9 +22,9 @@ export default function VotationCardList({ votationPool }: Props) {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full ">
                {votationPool.cards &&
-                  votationPool.cards.map((votationCard: VotationCardI) => (
+                  votationPool.cards.map((votationCard: VotesCardI) => (
                      <VotationCard
-                        key={votationCard.id}
+                        key={votationCard._id}
                         className="w-full"
                         votationCard={votationCard}
                         user={user}

@@ -1,7 +1,7 @@
-import { Schema, model } from "mongoose";
-import { ITokenDocument, ITokenModel } from "../interfaces/user.interface";
+import { Schema, models, model } from "mongoose";
+import { TokenDocumentI, TokenModelI } from "../interfaces/user.interface";
 
-const TokenSchema: Schema<ITokenDocument> = new Schema({
+const TokenSchema: Schema<TokenDocumentI> = new Schema({
    userId: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -17,10 +17,5 @@ const TokenSchema: Schema<ITokenDocument> = new Schema({
    },
 });
 
-TokenSchema.statics.buildToken = (args: ITokenDocument) => {
-   return new Token(args);
-};
-
-const Token = model<ITokenDocument, ITokenModel>("tokens", TokenSchema);
-
-export default Token;
+export default models.Token ||
+   model<TokenDocumentI, TokenModelI>("Token", TokenSchema);

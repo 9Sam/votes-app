@@ -1,19 +1,18 @@
 import {
-   VotationCardI,
-   VotationPoolI,
-} from "../../../../interfaces/votes.interface";
+   VotesCardI,
+   VotesPoolI,
+} from "../interfaces/votes.interface";
 import {
    getDate,
    getRelations,
    getText,
    getTitle,
-} from "../../../../utils/notion.utils";
+} from "../utils/notion.utils";
 
-export const mapToVotationPools = (res: any): VotationPoolI[] => {
-   const votationPools: VotationPoolI[] = res.map(
+export const mapToVotationPools = (res: any): VotesPoolI[] => {
+   const votationPools: VotesPoolI[] = res.map(
       ({ properties }: NotionResultT) => {
-         const votationPool: VotationPoolI = {
-            id: getText(properties.id),
+         const votationPool: VotesPoolI = {
             title: getTitle(properties.title),
             userId: getRelations(properties.userId)[0],
             status: getText(properties.status),
@@ -31,11 +30,10 @@ export const mapToVotationPools = (res: any): VotationPoolI[] => {
    return votationPools;
 };
 
-export const mapToVotationCards = (res: any): VotationCardI[] => {
-   const cards: VotationCardI[] = res.map(
+export const mapToVotationCards = (res: any): VotesCardI[] => {
+   const cards: VotesCardI[] = res.map(
       ({ properties, id }: NotionResultT) => {
-         const card: VotationCardI = {
-            id: getText(properties.id),
+         const card: VotesCardI = {
             title: getTitle(properties.title),
             description: getText(properties.description),
             likes: getText(properties.likes).split(";"),

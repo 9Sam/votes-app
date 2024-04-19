@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+   --color-primary: #00bd6e;
+   --color-primary-with-opacity: #00bd6e10;
    --foreground-rgb: 0, 0, 0;
    --background-start-rgb: 214, 219, 220;
    --background-end-rgb: 255, 255, 255;
@@ -24,4 +26,10 @@
 
 .icon-style {
    @apply w-6 h-6;
+}
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: var(--color-primary) !important;
 }

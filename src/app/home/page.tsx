@@ -1,19 +1,33 @@
-import VotationPools from "../../components/votationPools";
+"use client"
 
-async function fetchData() {
-   const response = await fetch(`${process.env.HOST}/api/votation`);
+import Spinner from "@/components/shared/spinner";
+import withAuth from "@/components/withAuth";
+import { useSession } from "next-auth/react";
+import { useRouter} from "next/navigation"
 
-   return response.json();
-}
 
-export default async function Home() {
-   const data = await fetchData();
 
-   // console.log("votationresponse: ", data);
+function Home() {
+   const  {data: session, status} = useSession();
+   const router = useRouter();
+
+   if (status === "loading") {
+      return <Spinner/>
+    }
+  
+    if (status === "unauthenticated") {
+      return <p>Access Denied</p>
+    }
+
+   if(!session?.user === undefined){
+      router.push("/auth/login")
+   }
 
    return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-5 md:p-10 lg:24">
+      <main className="flex flex-col items-center justify-between p-5 md:p-10 lg:24">
          {/* <VotationPools votationPools={data} /> */}
       </main>
    );
 }
+
+export default Home;

@@ -1,11 +1,11 @@
 import { Schema, models, model } from "mongoose";
 import {
-   IVotesPool,
-   IVotesPoolDocument,
-   IVotesPoolModel,
+   VotesPoolI,
+   VotesPoolDocumentI,
+   VotesPoolModelI,
 } from "../interfaces/votes.interface";
 
-const VotesPoolSchema: Schema<IVotesPoolDocument> = new Schema(
+const VotesPoolSchema: Schema<VotesPoolDocumentI> = new Schema(
    {
       title: {
          type: String,
@@ -44,13 +44,5 @@ const VotesPoolSchema: Schema<IVotesPoolDocument> = new Schema(
    { timestamps: true }
 );
 
-VotesPoolSchema.statics.buildVotesPool = (args: IVotesPool) => {
-   return new VotesPool(args);
-};
-
-const VotesPool = model<IVotesPoolDocument, IVotesPoolModel>(
-   "votesPool",
-   VotesPoolSchema
-);
-
-export default VotesPool;
+export default models.VotesPool ||
+   model<VotesPoolDocumentI, VotesPoolModelI>("VotesPool", VotesPoolSchema);

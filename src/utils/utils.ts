@@ -1,30 +1,19 @@
-export const getRelations = (
-   notionProperty: NotionPropertiesAttributes<string>
-) => {
-   const relations = notionProperty?.relation || [];
-   return relations.map((property: any) => property.id);
-};
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export const getText = (
-   notionProperties: NotionPropertiesAttributes<string>
-) => {
-   const textArray = notionProperties?.rich_text || [];
-   const text = textArray.map((text: any) => text.plain_text).join("");
+export const notify = (message: String, type: "error" | "success") =>
+   type === "error"
+      ? toast.error(message, {
+           className: "mt-14",
+           position: "top-center",
+           progress: "false",
+        })
+      : toast.success(message, {
+           className: "mt-14",
+           position: "top-center",
+           progress: "false",
+        });
 
-   return text;
-};
-
-export const getTitle = (
-   notionProperties: NotionPropertiesAttributes<string>
-) => {
-   const textArray = notionProperties?.title || [];
-   const text = textArray.map((text: any) => text.plain_text).join("");
-   return text;
-};
-
-export const getDate = (
-   notionProperties: NotionPropertiesAttributes<string>
-): Date => {
-   const date = notionProperties?.created_time || new Date();
-   return date;
+export const setTitle = (title: string) => {
+   document.title = title;
 };

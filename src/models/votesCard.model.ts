@@ -1,6 +1,10 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, models, model } from "mongoose";
+import {
+   VotesCardDocumentI,
+   VotesCardModelI,
+} from "../interfaces/votes.interface";
 
-const CardSchema = new Schema(
+const VotesCardSchema: Schema<VotesCardDocumentI> = new Schema(
    {
       title: { type: String },
       description: { type: String },
@@ -12,4 +16,5 @@ const CardSchema = new Schema(
    { timestamps: true }
 );
 
-export default models.Card || model("Card", CardSchema);
+export default models.VotesCard ||
+   model<VotesCardDocumentI, VotesCardModelI>("VotesCard", VotesCardSchema);

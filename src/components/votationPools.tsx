@@ -1,18 +1,17 @@
 "use client";
 
-import { useSelector } from "react-redux";
-import { VotationPoolI } from "../interfaces/votes.interface";
+import { VotesPoolI } from "../interfaces/votes.interface";
 
 type Props = {
-   votationPools: VotationPoolI[];
+   votationPools: VotesPoolI[];
 };
 
 export default function VotationPools({ votationPools }: Props) {
    return (
       <div>
          {votationPools &&
-            votationPools.map((votationPool: VotationPoolI) => (
-               <div key={votationPool.id}>
+            votationPools.map((votationPool: VotesPoolI) => (
+               <div key={votationPool._id}>
                   <h1>{votationPool.title}</h1>
                   <p>{votationPool.description}</p>
                </div>

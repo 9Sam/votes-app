@@ -96,9 +96,5 @@
          }
       ]
    },
-   "workbench.colorCustomizations": {
-      "activityBar.background": "#411C5A",
-      "titleBar.activeBackground": "#5B277E",
-      "titleBar.activeForeground": "#FCFBFE"
-   }
+   "typescript.preferences.importModuleSpecifier": "non-relative"
 }

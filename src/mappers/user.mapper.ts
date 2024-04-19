@@ -1,8 +1,8 @@
-import { IUser } from "../interfaces/user.interface";
+import { UserI } from "../interfaces/user.interface";
 import { getText, getTitle } from "../utils/notion.utils";
 
-export const mapToUser = ({ properties, id }: any): IUser => {
-   const user: IUser = {
+export const mapToUser = ({ properties, id }: any): UserI => {
+   const user: UserI = {
       _id: id,
       name: getTitle(properties.name),
       email: getText(properties.email),

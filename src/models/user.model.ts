@@ -1,7 +1,7 @@
-import { Schema, model } from "mongoose";
-import { IUser, IUserDocument, IUserModel } from "../interfaces/user.interface";
+import { Schema, models, model } from "mongoose";
+import { UserDocumentI, UserModelI } from "../interfaces/user.interface";
 
-const UserSchema: Schema<IUserDocument> = new Schema(
+const UserSchema: Schema<UserDocumentI> = new Schema(
    {
       name: {
          type: String,
@@ -26,10 +26,5 @@ const UserSchema: Schema<IUserDocument> = new Schema(
    { timestamps: true }
 );
 
-UserSchema.statics.buildUser = (args: IUser) => {
-   return new User(args);
-};
-
-const User = model<IUserDocument, IUserModel>("users", UserSchema);
-
-export default User;
+export default models.User ||
+   model<UserDocumentI, UserModelI>("User", UserSchema);
