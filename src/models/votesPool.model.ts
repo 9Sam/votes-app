@@ -1,6 +1,5 @@
 import { Schema, models, model } from "mongoose";
 import {
-   VotesPoolI,
    VotesPoolDocumentI,
    VotesPoolModelI,
 } from "../interfaces/votes.interface";

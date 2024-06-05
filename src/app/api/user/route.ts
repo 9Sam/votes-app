@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import UserService from "@/services/userService/user.service";
-import { NextApiRequest } from "next";
 
 export async function GET(req: Request) {
    const { searchParams } = new URL(req.url);

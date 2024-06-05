@@ -41,8 +41,10 @@ export default function ResetPassword() {
                   <Image
                      src={"/icon.svg"}
                      alt="logo"
-                     width={100}
-                     height={100}
+                     width="0"
+                     height="0"
+                     sizes="100vw"
+                     style={{ width: '100%', height: 'auto' }}
                   />
                </div>
             </div>

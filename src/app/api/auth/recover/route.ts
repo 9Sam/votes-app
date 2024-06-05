@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import AuthService from "@/services/authService/auth.service";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
    const { email } = await req.json();
@@ -10,7 +10,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ link });
    } catch (error) {
       if (error instanceof Error) {
-         console.error(error.message);
+         throw new Error(error.message);
       }
       return NextResponse.error();
    }

@@ -24,19 +24,16 @@ export default function LoginPage() {
 
    const [isPassVisible, setIsPassVisible] = useState<boolean>(false);
 
+   useSetTitle("Login");
+
    if (status === "loading") {
       return <Spinner />;
-   }
-
-   if (status === "unauthenticated") {
-      return <p>Access Denied</p>;
    }
 
    if(session?.user){
       redirect("/home")
    }
 
-   useSetTitle("Login");
 
    const handleSignIn = async (data: any) => {
       const res = await signIn("credentials", {
