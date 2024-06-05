@@ -1,7 +1,6 @@
 "use client"
 
 import Spinner from "@/components/shared/spinner";
-import withAuth from "@/components/withAuth";
 import { useSession } from "next-auth/react";
 import { useRouter} from "next/navigation"
 
@@ -16,7 +15,7 @@ function Home() {
     }
   
     if (status === "unauthenticated") {
-      return <p>Access Denied</p>
+      return router.push("/auth/login")
     }
 
    if(!session?.user === undefined){

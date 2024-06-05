@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import {
    Navbar,
    NavbarBrand,
@@ -9,16 +10,9 @@ import {
    NavbarItem,
    Button,
 } from "@nextui-org/react";
-import { signOut, useSession } from "next-auth/react";
-import { useEffect } from "react";
 
 export default function NavbarCustom() {
    const { data: session } = useSession();
-
-   useEffect(() => {
-      console.log("session1", session);
-      
-   },[])
 
    return (
       <Navbar position="static">
@@ -26,10 +20,13 @@ export default function NavbarCustom() {
             <div className="flex align-middle">
                <Image
                   className="my-auto"
+                  priority={true} 
                   src={"/icon.svg"}
                   alt="logo"
-                  width={"30"}
-                  height={"30"}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  style={{ width: '30px', height: 'auto' }}
                />
                <span className="font-bold text-inherit my-auto ms-3">VOTE</span>
             </div>

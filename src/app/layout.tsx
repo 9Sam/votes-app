@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import NavbarCustom from "../components/shared/navbarCustom";
 import ReduxProvider from "../redux/provider";
 import { Providers } from "./Providers";
 import "./globals.css";
-import { AuthProvider } from "@/providers/auth.provider";
-import PrivateRoute from "@/utils/privateRoute";
-import { Component } from "react";
+import App from "@/app/app";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,18 +17,17 @@ export default function RootLayout({
 }: Readonly<{
    children: React.ReactNode;
 }>) {
-   const protectedRoutes = ["/home"];
-
    return (
       <html lang="en">
          <body className={inter.className}>
             <Providers>
-               <NavbarCustom />
                <ReduxProvider>
                   {/* <AuthProvider> */}
-                     {/* <PrivateRoute protectedRoutes={protectedRoutes}> */}
-                        {children}
-                     {/* </PrivateRoute> */}
+                  {/* <PrivateRoute protectedRoutes={protectedRoutes}> */}
+                  <App>
+                     {children}
+                  </App>
+                  {/* </PrivateRoute> */}
                   {/* </AuthProvider> */}
                </ReduxProvider>
             </Providers>
