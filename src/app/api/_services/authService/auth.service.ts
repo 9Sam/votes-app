@@ -3,14 +3,15 @@ import bcrypt from "bcrypt";
 import dbConnect from "@/db/db";
 import User from "@/models/user.model";
 import Token from "@/models/token.model";
-import MailService from "@/services/mailService/mail.service";
+import MailService from "@/app/api/_services/mailService/mail.service";
 import { UserDocumentI, UserI, UserModelI } from "@/interfaces/user.interface";
 import { TemplatesE } from "@/utils/htmlTemplates/templates";
 import { TRecoverPasswordTemplate } from "@/utils/htmlTemplates/recoverPassword";
-import { AuthServiceI, RecoverEmailContextT } from "@/interfaces/authService.interface";
-import userService from "@/services/userService/user.service";
-
-
+import {
+   AuthServiceI,
+   RecoverEmailContextT,
+} from "@/interfaces/authService.interface";
+import userService from "@/app/api/_services/userService/user.service";
 
 class AuthService implements AuthServiceI {
    constructor() {
@@ -50,7 +51,11 @@ class AuthService implements AuthServiceI {
       }
    }
 
-   async resetPassword(userId: string, token: string, password: string): Promise<boolean> {
+   async resetPassword(
+      userId: string,
+      token: string,
+      password: string
+   ): Promise<boolean> {
       let passwordResetToken = await Token.findOne({ userId });
 
       if (!passwordResetToken) {
@@ -128,7 +133,7 @@ class AuthService implements AuthServiceI {
       if (credentials === null || credentials === undefined) {
          const foundUser = await userService.getUser(user.email);
 
-         if(!foundUser){
+         if (!foundUser) {
             await userService.createUser({
                name: user.name,
                email: user.email,

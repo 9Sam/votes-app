@@ -1,5 +1,4 @@
 import { Document, Model } from "mongoose";
-import { UserI } from "./user.interface";
 
 export interface VotesCardI {
    _id?: any;
@@ -16,7 +15,7 @@ export interface VotesPoolI {
    _id?: any;
    title: string;
    description: string;
-   userId: UserI;
+   userId: string;
    cards: VotesCardI[];
    guests: string[];
    status: string;

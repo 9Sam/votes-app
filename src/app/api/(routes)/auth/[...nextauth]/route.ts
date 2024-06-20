@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import UserService from "@/services/userService/user.service";
-import authService from "@/services/authService/auth.service";
+import UserService from "@/app/api/_services/userService/user.service";
+import authService from "@/app/api/_services/authService/auth.service";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcrypt";
 

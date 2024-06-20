@@ -20,19 +20,19 @@ export default function LoginPage() {
       setError,
       formState: { errors },
    } = useForm();
-   const { data: session, status } = useSession();
+   // const { data: session, status } = useSession();
 
    const [isPassVisible, setIsPassVisible] = useState<boolean>(false);
 
-   useSetTitle("Login");
+   // useSetTitle("Login");
 
-   if (status === "loading") {
-      return <Spinner />;
-   }
+   // if (status === "loading") {
+   //    return <Spinner />;
+   // }
 
-   if(session?.user){
-      redirect("/home")
-   }
+   // if(session?.user){
+   //    redirect("/home")
+   // }
 
 
    const handleSignIn = async (data: any) => {

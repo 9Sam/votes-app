@@ -1,4 +1,4 @@
-import AuthService from "@/services/authService/auth.service";
+import AuthService from "@/app/api/_services/authService/auth.service";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {

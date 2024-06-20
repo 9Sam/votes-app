@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import AuthService from "@/services/authService/auth.service";
+import AuthService from "@/app/api/_services/authService/auth.service";
 import { StatusE } from "@/utils/enums";
 
 type ResetPasswordProps = {

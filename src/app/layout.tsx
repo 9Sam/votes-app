@@ -22,13 +22,9 @@ export default function RootLayout({
          <body className={inter.className}>
             <Providers>
                <ReduxProvider>
-                  {/* <AuthProvider> */}
-                  {/* <PrivateRoute protectedRoutes={protectedRoutes}> */}
                   <App>
                      {children}
                   </App>
-                  {/* </PrivateRoute> */}
-                  {/* </AuthProvider> */}
                </ReduxProvider>
             </Providers>
          </body>

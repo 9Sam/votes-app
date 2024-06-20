@@ -1,6 +1,6 @@
 import fs from "fs";
 import { google } from "googleapis";
-import apikeys from "../../../apiKeys.json";
+import apikeys from "../../../../../apiKeys.json";
 
 const SCOPES = [process.env.GOOGLE_SCOPES?.split(",")] && [
    "https://www.googleapis.com/auth/drive",

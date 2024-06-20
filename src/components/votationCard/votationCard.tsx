@@ -37,14 +37,7 @@ export default function VotationCard({
    votationCard,
    user,
 }: VotationCardProps) {
-   const {
-      title,
-      description,
-      createdBy,
-      likes,
-      dislikes,
-      createdAt,
-   } = votationCard;
+   const { title, description, createdBy } = votationCard;
 
    const titleRef = useRef<HTMLTextAreaElement>(null);
    const descriptionRef = useRef<HTMLTextAreaElement>(null);
@@ -120,7 +113,7 @@ export default function VotationCard({
 
    return (
       <Card className={`${className} w-full`} shadow="sm">
-         <CardHeader className="icons flex gap-2 justify-end h-14">
+         <CardHeader className="flex gap-2 justify-end p-0 pt-2 pe-2">
             {isEditable ? (
                <Button variant="light" color="danger" size="sm">
                   <AiFillDelete className="icon-style" />
@@ -129,7 +122,7 @@ export default function VotationCard({
                <AiFillLock className="icon-style text-gray-500" />
             )}
          </CardHeader>
-         <CardBody>
+         <CardBody className="py-0">
             <TextArea
                ref={titleRef}
                className="text-lg font-bold"

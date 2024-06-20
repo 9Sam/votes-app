@@ -1,7 +1,7 @@
 "use client";
 
 import NavbarCustom from "@/components/shared/navbarCustom";
-import { Spinner } from "@nextui-org/react";
+import Spinner from "@/components/shared/spinner";
 import { useSession } from "next-auth/react";
 
 type Props = {
@@ -14,7 +14,7 @@ function App({ children }: Props) {
    if (status === "loading") {
       return (
          <div className="flex justify-center items-center h-screen">
-            <Spinner />
+            <Spinner/>
          </div>
       );
    }
